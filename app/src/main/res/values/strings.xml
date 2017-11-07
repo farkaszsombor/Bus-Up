@@ -13,6 +13,8 @@
     <string name="incorrect_credentials">Hibás e-mail vagy jelszó !</string>
     <string name="no_user_found">Nem létező felhasználó !</string>
     <string name="login_failed">Hiba történt ! Kérlek probálokoz újra! </string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
     <!--LoginActivity strings definition ends here-->
 
 
