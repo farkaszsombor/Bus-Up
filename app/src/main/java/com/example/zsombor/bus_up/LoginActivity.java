@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button mbutton;
     private EditText mEmailText,mPasswordText;
     private TextView mRegisterTextview;
-    private ProgressBar mprogressBar;
     private ConstraintLayout mConstraintLayout;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthstateListener;
@@ -70,7 +69,6 @@ public class LoginActivity extends AppCompatActivity {
         mEmailText = (EditText)findViewById(R.id.login_email);
         mRegisterTextview = (TextView)findViewById(R.id.button_to_register);
         mPasswordText = (EditText)findViewById(R.id.login_password);
-        mprogressBar = (ProgressBar)findViewById(R.id.login_progress);
         mAuth = FirebaseAuth.getInstance();
         mAuthstateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -163,29 +161,6 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return validationControl;
-    }
-
-    private class LoginTask extends AsyncTask<Void,Void,Void> {
-
-        @Override
-        protected Void doInBackground(Void... aVoid) {
-            loginIntoFirebase();
-
-            return null;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mprogressBar.setVisibility(View.VISIBLE);
-        }
-
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            mprogressBar.setVisibility(View.GONE);
-        }
     }
 
 
