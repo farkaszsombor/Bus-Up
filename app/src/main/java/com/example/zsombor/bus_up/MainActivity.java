@@ -28,11 +28,14 @@ public class MainActivity extends AppCompatActivity {
    private Button mButon;
    private TextView mtextView;
 
-    private  BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    private  BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener;
 
-            switch (item.getItemId()){
+    {
+        onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
              /*   case R.id.main_page:
                     Kezdooldal kezdooldal = new Kezdooldal();
                     android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
@@ -40,24 +43,23 @@ public class MainActivity extends AppCompatActivity {
                     return true;*/
 
 
-                case R.id.path_from_to:
-                    Osszes_busz osszes_busz = new Osszes_busz();
-                    android.support.v4.app.FragmentManager manager2 = getSupportFragmentManager();
-                    manager2.beginTransaction().replace(R.id.osszes_bus_id,osszes_busz).commit();
-                    return true;
+                    case R.id.path_from_to:
+                        Osszes_busz osszes_busz = new Osszes_busz();
+                        android.support.v4.app.FragmentManager manager2 = getSupportFragmentManager();
+                        manager2.beginTransaction().replace(R.id.osszes_bus_id, osszes_busz).commit();
+                        return true;
 
 
+                    case R.id.every_bus:
 
+                        return true;
+                }
+                return false;
 
-                case R.id.every_bus:
-
-                    return true;
             }
-            return false;
 
-        }
-
-    };
+        };
+    }
 
 
     @Override
