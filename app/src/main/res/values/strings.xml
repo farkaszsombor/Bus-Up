@@ -13,10 +13,18 @@
     <string name="incorrect_credentials">Hibás e-mail vagy jelszó !</string>
     <string name="no_user_found">Nem létező felhasználó !</string>
     <string name="login_failed">Hiba történt ! Kérlek probálokoz újra! </string>
+    <string name="sign_in_text">Bejelentkezés</string>
+
+    <!--LoginActivity strings definition ends here-->
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!--LoginActivity strings definition ends here-->
+    <string name="email_login_text">E-mail cím</string>
+    <string name="password_login_text">Jelszó</string>
+    <string name="register_login_text">REGISZTRÁCIÓ</string>
+    <string name="register_text">Regisztráció</string>
+    <string name="full_name_register">Tejes név</string>
+    <string name="repass_register">Jelszó újra</string>
 
 
 </resources>

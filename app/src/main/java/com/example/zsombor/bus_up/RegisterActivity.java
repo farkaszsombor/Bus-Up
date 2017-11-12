@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,7 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterActivity";
     private EditText mPassword,mEmail,mPasswordSecond,mFullName;
-    private Button mRegisterButton;
+    private ImageView mRegisterButton;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference mDatabaseReference = database.getReference();
     private FirebaseAuth mAuth;
@@ -42,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void initializeViews(){
 
-        mRegisterButton = (Button)findViewById(R.id.button_register);
+        mRegisterButton = (ImageView)findViewById(R.id.button_register);
         mPassword = (EditText)findViewById(R.id.password_register);
         mPasswordSecond = (EditText)findViewById(R.id.repassword_register);
         mEmail = (EditText)findViewById(R.id.email_register);

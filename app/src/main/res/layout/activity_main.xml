@@ -8,6 +8,12 @@
 
     tools:context="com.example.zsombor.bus_up.MainActivity">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log Out"
+        android:id="@+id/log_out"/>
+
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
