@@ -17,34 +17,30 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-   private Button mButon;
-   private TextView mtextView;
-   ImageButton imageButton;
+    private Button mButon;
+    private TextView mtextView;
+    ImageButton imageButton;
 
-   private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener =
-           new BottomNavigationView.OnNavigationItemSelectedListener() {
-               @Override
-               public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                   FragmentManager fragmentManager = getSupportFragmentManager();
-                   FragmentTransaction transaction = fragmentManager.beginTransaction();
-                   switch (item.getItemId()) {
-                       case R.id.path_from_to:
-                           transaction.replace(R.id.container, new Utvonal_terv()).commit();
-                           return true;
-                       case R.id.every_bus:
-                           transaction.replace(R.id.container,new Osszes_busz()).commit();
-                           return true;
-                       case R.id.profile:
-                           transaction.replace(R.id.container,new Profile()).commit();
-                           return true;
-                   }
-                   return false;
-               }
-           };
-
-
-
-
+    private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                    switch (item.getItemId()) {
+                        case R.id.path_from_to:
+                            transaction.replace(R.id.container, new Utvonal_terv()).commit();
+                            return true;
+                        case R.id.every_bus:
+                           transaction.replace(R.id.container, new Osszes_busz()).commit();
+                            return true;
+                        case R.id.profile:
+                            transaction.replace(R.id.container, new Profile()).commit();
+                            return true;
+                    }
+                    return false;
+                }
+            };
 
 
     @Override
@@ -52,21 +48,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
 
-        BottomNavigationView navigation = (BottomNavigationView)findViewById(R.id.navigation);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
 
-
-    }
-
-
-
-
     }
 
 
@@ -74,19 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-        mButon = (Button)findViewById(R.id.log_out);
-        mButon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth auth = FirebaseAuth.getInstance();
-                auth.signOut();
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                finish();
-            }
-        });
-
-
+}
 
 
 
