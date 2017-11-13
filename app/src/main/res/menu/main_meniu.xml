@@ -24,17 +24,11 @@
         app:showAsAction="ifRoom"/>
 
 
-    <item
-        android:id="@+id/chat"
-        android:enabled="true"
-        android:icon="@drawable/chat"
-        android:title="Chat"
-        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/profile"
         android:enabled="true"
-        android:icon="@drawable/chat"
+        android:icon="@drawable/chatt"
         android:title="Kovacs Bela"
         app:showAsAction="ifRoom"/>
 

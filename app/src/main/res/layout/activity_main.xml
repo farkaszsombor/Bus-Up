@@ -2,12 +2,15 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/relativeLayout"
+    android:id="@+id/con"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context="com.example.zsombor.bus_up.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
@@ -17,10 +20,7 @@
         app:itemTextColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/main_meniu">
-
-
-    </android.support.design.widget.BottomNavigationView>
+        app:menu="@menu/main_meniu" />
 
 
 </android.support.constraint.ConstraintLayout>

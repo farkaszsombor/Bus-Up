@@ -1,65 +1,49 @@
 package com.example.zsombor.bus_up;
 
-import android.annotation.SuppressLint;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
-import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
-
-
-import com.google.firebase.auth.FirebaseAuth;
-
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
    private Button mButon;
    private TextView mtextView;
+   ImageButton imageButton;
 
-    private  BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener;
+   private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener =
+           new BottomNavigationView.OnNavigationItemSelectedListener() {
+               @Override
+               public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                   FragmentManager fragmentManager = getSupportFragmentManager();
+                   FragmentTransaction transaction = fragmentManager.beginTransaction();
+                   switch (item.getItemId()) {
+                       case R.id.path_from_to:
+                           transaction.replace(R.id.container, new Utvonal_terv()).commit();
+                           return true;
+                       case R.id.every_bus:
+                           transaction.replace(R.id.container,new Osszes_busz()).commit();
+                           return true;
+                       case R.id.profile:
+                           transaction.replace(R.id.container,new Profile()).commit();
+                           return true;
+                   }
+                   return false;
+               }
+           };
 
-    {
-        onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch (item.getItemId()) {
-             /*   case R.id.main_page:
-                    Kezdooldal kezdooldal = new Kezdooldal();
-                    android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-                    manager.beginTransaction().replace(R.id.Kezdooldal_id,kezdooldal).commit();
-                    return true;*/
 
 
-                    case R.id.path_from_to:
-                        Osszes_busz osszes_busz = new Osszes_busz();
-                        android.support.v4.app.FragmentManager manager2 = getSupportFragmentManager();
-                        manager2.beginTransaction().replace(R.id.osszes_bus_id, osszes_busz).commit();
-                        return true;
 
-
-                    case R.id.every_bus:
-
-                        return true;
-                }
-                return false;
-
-            }
-
-        };
-    }
 
 
     @Override
@@ -67,12 +51,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+       BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
 
+        BottomNavigationView navigation = (BottomNavigationView)findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
 
 
-    }}
+
+    }
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
 
 
 
