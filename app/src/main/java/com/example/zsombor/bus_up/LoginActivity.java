@@ -7,12 +7,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +38,7 @@ import java.util.ArrayList;
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
-    private Button mbutton;
+    private ImageView mbutton;
     private EditText mEmailText,mPasswordText;
     private TextView mRegisterTextview;
     private ConstraintLayout mConstraintLayout;
@@ -47,10 +49,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().hide();
         initializeViews();
         authWithEmailAndPassword();
-
         mRegisterTextview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
     private void initializeViews(){
 
         mConstraintLayout = (ConstraintLayout)findViewById(R.id.login_container);
-        mbutton = (Button)findViewById(R.id.login_button);
+        mbutton = (ImageView)findViewById(R.id.login_button);
         mEmailText = (EditText)findViewById(R.id.login_email);
         mRegisterTextview = (TextView)findViewById(R.id.button_to_register);
         mPasswordText = (EditText)findViewById(R.id.login_password);
@@ -85,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                 // ...
             }
         };
+
     }
 
     private void authWithEmailAndPassword(){
