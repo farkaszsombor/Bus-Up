@@ -7,18 +7,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Osszes_busz.OnFragmentInteractionListener} interface
+ * {@link Profile.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Osszes_busz#newInstance} factory method to
+ * Use the {@link Profile#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Osszes_busz extends Fragment {
+public class Profile extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,7 +29,7 @@ public class Osszes_busz extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Osszes_busz() {
+    public Profile() {
         // Required empty public constructor
     }
 
@@ -40,11 +39,11 @@ public class Osszes_busz extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Osszes_busz.
+     * @return A new instance of fragment Profile.
      */
     // TODO: Rename and change types and number of parameters
-    public static Osszes_busz newInstance(String param1, String param2) {
-        Osszes_busz fragment = new Osszes_busz();
+    public static Profile newInstance(String param1, String param2) {
+        Profile fragment = new Profile();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,10 +64,7 @@ public class Osszes_busz extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view2 =  inflater.inflate(R.layout.fragment_osszes_busz, container, false);
-        ///kod ide jon
-
-        return view2;
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -83,7 +79,7 @@ public class Osszes_busz extends Fragment {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
-        }
+        } //else
     }
 
     @Override
