@@ -42,9 +42,9 @@
         android:text="@string/full_name_register"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="192dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="143dp"
+        tools:layout_editor_absoluteY="189dp" />
 
     <EditText
         android:id="@+id/name_register"
@@ -117,7 +117,7 @@
         android:text="@string/password_login_text"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintStart_toStartOf="@+id/button_register"
         app:layout_constraintTop_toTopOf="@+id/textInputLayout" />
 
     <android.support.design.widget.TextInputLayout
