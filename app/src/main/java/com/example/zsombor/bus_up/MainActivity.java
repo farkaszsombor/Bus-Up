@@ -3,6 +3,7 @@ package com.example.zsombor.bus_up;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -15,7 +16,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.android.gms.maps.OnMapReadyCallback;
+
+public class MainActivity extends AppCompatActivity{
 
     private Button mButon;
     private TextView mtextView;
@@ -37,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.profile:
                             transaction.replace(R.id.container, new Profile()).commit();
                             return true;
+                        case R.id.main_page:
+                            transaction.replace(R.id.container,new MainPageFragment()).commit();
+                            return true;
                     }
                     return false;
                 }
@@ -48,10 +54,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
-        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationViewHelper.disableShiftMode(navigation);
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();

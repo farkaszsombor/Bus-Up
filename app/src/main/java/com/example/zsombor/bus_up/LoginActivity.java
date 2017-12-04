@@ -1,21 +1,18 @@
 package com.example.zsombor.bus_up;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,17 +55,18 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
+
     //Method for initalizing every aspect of design
+    @SuppressLint("ClickableViewAccessibility")
     private void initializeViews(){
 
-        mConstraintLayout = (ConstraintLayout)findViewById(R.id.login_container);
-        mbutton = (ImageView)findViewById(R.id.login_button);
-        mEmailText = (EditText)findViewById(R.id.login_email);
-        mRegisterTextview = (TextView)findViewById(R.id.button_to_register);
-        mPasswordText = (EditText)findViewById(R.id.login_password);
+        mConstraintLayout = findViewById(R.id.login_container);
+        mbutton = findViewById(R.id.login_button);
+        mEmailText = findViewById(R.id.login_email);
+        mRegisterTextview = findViewById(R.id.button_to_register);
+        mPasswordText = findViewById(R.id.login_password);
         mAuth = FirebaseAuth.getInstance();
         mAuthstateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -125,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                             // the auth state listener will be notified and logic to handle the
                             // signed in user can be handled in the listener.
                             if (!task.isSuccessful()) {
-                                Log.w(TAG, "signInWithEmail:failed", task.getException());
+                                Log.e(TAG, "signInWithEmail:failed", task.getException());
                                 Toast.makeText(LoginActivity.this, "Failed",
                                         Toast.LENGTH_SHORT).show();
                             } else {
