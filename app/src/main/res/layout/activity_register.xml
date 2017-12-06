@@ -54,6 +54,7 @@
         android:layout_marginBottom="14dp"
         android:backgroundTint="#FFFFFF"
         android:gravity="center"
+        android:inputType="textPersonName"
         android:maxLines="1"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
@@ -131,13 +132,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_register"
         app:passwordToggleDrawable="@drawable/icon_selector"
+        app:passwordToggleTint="#FFFFFF"
         app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/colorPrimary"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1">
 
-        <EditText
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/password_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -171,12 +172,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
         app:passwordToggleDrawable="@drawable/icon_selector"
         app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/colorPrimary"
+        app:passwordToggleTint="#FFFFFF"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1">
 
-        <EditText
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/repassword_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

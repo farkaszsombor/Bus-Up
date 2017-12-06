@@ -22,9 +22,7 @@
         android:icon="@drawable/osszes"
         android:title="Összes busz"
         app:showAsAction="ifRoom"/>
-
-
-
+    
     <item
         android:id="@+id/profile"
         android:enabled="true"

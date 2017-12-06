@@ -8,16 +8,12 @@
     <string name="action_settings">Settings</string>
     <string name="password">Password</string>
 
-    <!--LoginActivity strings definition starts here-->
+    <!--LoginActivity & RegisterActivity strings definition starts here-->
     <string name="empty_field">Üres mező ! </string>
     <string name="incorrect_credentials">Hibás e-mail vagy jelszó !</string>
     <string name="no_user_found">Nem létező felhasználó !</string>
     <string name="login_failed">Hiba történt ! Kérlek probálokoz újra! </string>
     <string name="sign_in_text">Bejelentkezés</string>
-
-    <!--LoginActivity strings definition ends here-->
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="email_login_text">E-mail cím</string>
     <string name="password_login_text">Jelszó</string>
@@ -25,6 +21,15 @@
     <string name="register_text">Regisztráció</string>
     <string name="full_name_register">Tejes név</string>
     <string name="repass_register">Jelszó újra</string>
+    <string name="no_match_password">Nem egyező jelszavak !</string>
+    <string name="user_already">A megadott felhasználó már létezik !</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="concanetated">%1$s - %2$s</string>
+    <!--LoginActivity & RegisterActivity strings definition ends here-->
 
+    <!-- TODO: Remove or change this placeholder text -->
+	
+	<string name="facebook_app_id">198516220715713</string>
+	<string name="fb_login_protocol_scheme">fb198516220715713</string>
 
 </resources>
