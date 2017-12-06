@@ -2,24 +2,28 @@ package com.example.zsombor.bus_up;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
+import android.support.v4.app.ListFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button mButon;
     private TextView mtextView;
     ImageButton imageButton;
+
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -34,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.every_bus:
                            transaction.replace(R.id.container, new Osszes_busz()).commit();
                             return true;
-                        case R.id.profile:
+                         case R.id.profile:
                             transaction.replace(R.id.container, new Profile()).commit();
                             return true;
                     }
