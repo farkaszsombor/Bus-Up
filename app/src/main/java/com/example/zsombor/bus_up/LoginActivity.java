@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
@@ -16,6 +17,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -26,6 +32,9 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+
 import java.util.ArrayList;
 
 /**
@@ -35,17 +44,22 @@ import java.util.ArrayList;
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
-    private ImageView mbutton;
-    private EditText mEmailText,mPasswordText;
+    private ImageView mButton;
+    private EditText mEmailText;
+    private TextInputEditText mPasswordText;
     private TextView mRegisterTextview;
     private ConstraintLayout mConstraintLayout;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthstateListener;
 
+    private LoginButton facebookLoginButton;
+    private CallbackManager callbackManager;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        callbackManager = CallbackManager.Factory.create();
         initializeViews();
         authWithEmailAndPassword();
         mRegisterTextview.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +67,23 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
                 finish();
+            }
+        });
+        facebookLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                finish();
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
             }
         });
     }
@@ -63,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
     private void initializeViews(){
 
         mConstraintLayout = findViewById(R.id.login_container);
-        mbutton = findViewById(R.id.login_button);
+        mButton = findViewById(R.id.login_button);
         mEmailText = findViewById(R.id.login_email);
         mRegisterTextview = findViewById(R.id.button_to_register);
         mPasswordText = findViewById(R.id.login_password);
@@ -83,12 +114,13 @@ public class LoginActivity extends AppCompatActivity {
                 // ...
             }
         };
+        facebookLoginButton = findViewById(R.id.facebook_login_button);
 
     }
 
     private void authWithEmailAndPassword(){
 
-        mbutton.setOnClickListener(new View.OnClickListener() {
+        mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                loginIntoFirebase();

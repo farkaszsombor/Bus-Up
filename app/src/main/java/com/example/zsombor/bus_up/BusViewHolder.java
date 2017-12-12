@@ -6,6 +6,7 @@ import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -17,12 +18,29 @@ import java.util.List;
 public class BusViewHolder extends RecyclerView.ViewHolder{
 
     public TextView mFromTo;
-    public  TextView mToFrom;
+    public TextView mToFrom;
+    public ImageView icon;
+    private BusClickListenerInterface mClickListener;
 
     public BusViewHolder(View itemView) {
         super(itemView);
         mFromTo = itemView.findViewById(R.id.location_to_from);
         mToFrom = itemView.findViewById(R.id.location_from_to);
+        icon = itemView.findViewById(R.id.icon_rec);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mClickListener.onItemClick(view,getAdapterPosition());
+            }
+        });
+    }
+
+    public ImageView getIcon() {
+        return icon;
+    }
+
+    public void setIcon(ImageView icon) {
+        this.icon = icon;
     }
 
     public TextView getmFromTo() {
@@ -39,5 +57,9 @@ public class BusViewHolder extends RecyclerView.ViewHolder{
 
     public void setmToFrom(TextView mToFrom) {
         this.mToFrom = mToFrom;
+    }
+
+    public void setmClickListener(BusClickListenerInterface listener){
+        this.mClickListener = listener;
     }
 }
