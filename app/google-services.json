@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "896970164009-lj2c4u0r2s3ecv2uvv0ed20089tiug70.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.zsombor.bus_up",
+            "certificate_hash": "374b985993e264745143c9e99721e171ef09c60a"
+          }
+        },
+        {
           "client_id": "896970164009-845ecm8p2rs2amnk33552jjsn143dfq8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
