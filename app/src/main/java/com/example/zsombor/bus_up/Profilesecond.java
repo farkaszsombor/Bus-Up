@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,6 +34,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -65,67 +67,35 @@ public class Profilesecond  extends Fragment {
     private StorageReference reference = FirebaseStorage.getInstance().getReference();
     private FirebaseAuth mAuth;
     private static final int CAPTURE_IMAGE_ACTIVITY_CODE=1888;
-    private ImageView imageView,imageView_button_to_database;
+    private ImageView imageView,imageView_button_to_database,imageView_profile;
     private Bitmap bitmap;
     private File destination = null;
     private String imgPath = null;
     private Intent data;
     private  final int PICK_IMAGE_CAMERA = 1,PICK_IMAGE_GALLERY = 2;
     private File mediaFile;
-    private EditText editTextname,editTextemail;
+    private EditText editTextname ;
+    private EditText editTextemail;
+    private UserInfo info;
+    private User userData;
     ScrollView sv;
+    private  String userId;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        userData = new User();
     }
-
-    /*public View onCreateView1(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
-        if (container == null) { return null; }
-
-        sv = (ScrollView)inflater.inflate(R.layout.profilefirst, container, false);
-
-        imageView_button_to_database.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                Toast.makeText(getActivity(), "Please long press the key", Toast.LENGTH_LONG );
-
-            }});
-
-        return sv;
-    }
-    private void TakePhoto() {
-
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-        File sdCard = Environment.getExternalStorageDirectory();
-        String path = sdCard.getAbsolutePath() + "/Camera"  ;
-
-        File dir = new File(path);
-        if (!dir.exists()) {
-            if (dir.mkdirs()) {
-
-            }
-        }
-        String FileName = "image";
-        File file = new File(path, FileName + ".jpg");
-        Uri outputFileUri = Uri.fromFile(file);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
-        startActivityForResult(intent, TAKE_PICTURE);
-    }*/
-
-
-
 
     public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
 
          View rootview = inflater.inflate(R.layout.profile,container,false);
         imageView= (ImageView) rootview.findViewById(R.id.imageView4);
         imageView_button_to_database = rootview.findViewById(R.id.edit_button);
-        editTextname = (EditText) rootview.findViewById(R.id.fullname_profile);
         editTextemail = (EditText) rootview.findViewById(R.id.email_profil);
+        imageView_profile = (ImageView) rootview.findViewById(R.id.imageView4);
+        editTextname = (EditText) rootview.findViewById(R.id.fullname_profile);
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,7 +109,7 @@ public class Profilesecond  extends Fragment {
                 updateDataInFirebase();
             }
         });
-
+        setUserInformationToProfile();
         return rootview;
     }
 
@@ -210,37 +180,7 @@ public class Profilesecond  extends Fragment {
         mediaFile = new File(mediaStorageDir.getPath() + File.separator + mImageName);
         return mediaFile;
     }
-  /*@Override
-  public void onActivityResult(int requestCode, int resultCode, Intent data) {
-      super.onActivityResult(requestCode, requestCode, data);
-      try {
-          // When an Image is picked
-          if (requestCode == 0 && resultCode == Activity.RESULT_OK && null != data) {
-              Uri selectedImage = data.getData();
 
-              imageView.setImageBitmap(BitmapFactory.decodeFile(getRealPathFromURI(selectedImage)));
-          } else
-              new ShowErrorToast(getActivity(), "Hey! your Android phone is busy");
-
-      } catch (Exception e) {
-
-      }
-
-  }
-
-    /*private String getRealPathFromURI(Uri selectedImage) {
-        String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-        Cursor cursor = getContentResolver().query(data, filePathColumn, null, null, null);
-        String picturePath = "";
-        if (cursor != null) {
-            cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
-            cursor.close();
-        }
-        return picturePath;
-    }*/
 
 
 
@@ -254,7 +194,7 @@ public class Profilesecond  extends Fragment {
 
     private void updateDataInFirebase(){
 
-        if(mediaFile != null){
+        if(mediaFile != null){//van kep ki valasztva !!!
             final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             final String userID = user.getUid();
             StorageReference picsRef = reference.child("ProfilePhotos/" + userID + ".jpg");
@@ -272,27 +212,69 @@ public class Profilesecond  extends Fragment {
                 }
             });
         }
+        else{
+            setIfeverythingIsCorrect(editTextname.getText().toString(),editTextemail.getText().toString(),userData.getPhotoURL(),userData,FirebaseAuth.getInstance().getCurrentUser().getUid());
+        }
     }
-    private  void updateCredentials(FirebaseUser user,String uid,String photourl,String email,String name){
-        mDatabaseReference.child("Users").child(uid).child("email").setValue(email);
-        mDatabaseReference.child("Users").child(uid).child("name").setValue(name);
-        mDatabaseReference.child("Users").child(uid).child("photoURL").setValue(photourl);
+    private  void updateCredentials(FirebaseUser user,String uid,String photourl,String email,String name) {
 
-        user.updateEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Log.e(TAG,"nem sikerult");
+            setIfeverythingIsCorrect(name,email,photourl,userData,uid);
+            user.updateEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Log.e(TAG, " sikerult");
+                    }
                 }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e(TAG,"nem sikerult",e.getCause());
-            }
-        });
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e(TAG, "nem sikerult", e.getCause());
+                }
+            });
 
+        }
+
+    private void setIfeverythingIsCorrect(String name, String email, String photourl, User user,String uid)
+    {
+        if (!name.isEmpty()&& !name.equals("")){
+            if (!user.getName().equals("")){
+                mDatabaseReference.child("Users").child(uid).child("name").setValue(name);
+            }
+        }
+        if (!email.isEmpty() && !email.equals("")){
+            if (!user.getEmail().equals("")){
+                mDatabaseReference.child("Users").child(uid).child("email").setValue(email);
+            }
+        }
+        if (!photourl.isEmpty() && !photourl.equals("")) {
+            if (!user.getPhotoURL().equals(photourl)) {
+                mDatabaseReference.child("Users").child(uid).child("pjotourl").setValue(photourl);
+            }
+        }
     }
+    private void setUserInformationToProfile() {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = user.getUid();
 
 
+        mDatabaseReference.child("Users").child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+              userData = dataSnapshot.getValue(User.class);
+
+                editTextname.setText(userData.getName());
+                editTextemail.setText(userData.getEmail());
+                Glide.with(getActivity()).load(userData.getPhotoURL()).into(imageView_profile);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        } );
+
+
+}
 }

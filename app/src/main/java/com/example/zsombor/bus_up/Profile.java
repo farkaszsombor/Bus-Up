@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,7 +36,8 @@ public class Profile extends Fragment {
     private String mParam2;
 
     private TextView button_image;
-    private ImageView imageView;
+    private ImageView profilePics;
+
     private TextView textView_name,textView_email;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference();
@@ -62,11 +64,10 @@ public class Profile extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.profilefirst,container,false);
         button_image = view.findViewById(R.id.button_to_profile);
-        imageView = view.findViewById(R.id.imageView9);
+        profilePics = view.findViewById(R.id.imageView9);
         textView_name= view.findViewById(R.id.textView18);
         textView_email = view.findViewById(R.id.textView17);
-
-        return view;
+            return view;
     }
 
     @Override
@@ -80,6 +81,7 @@ public class Profile extends Fragment {
                 User userData = dataSnapshot.getValue(User.class);
                 textView_name.setText(userData.getName());
                 textView_email.setText(userData.getEmail());
+                Glide.with(getActivity()).load(userData.getPhotoURL()).into(profilePics);
             }
 
             @Override
