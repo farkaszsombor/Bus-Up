@@ -25,7 +25,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.Signature;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     private Button mButon;
     private TextView mtextView;
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity{
                         case R.id.main_page:
                             transaction.replace(R.id.container,new MainPageFragment()).commit();
                             return true;
+
                     }
                     return false;
                 }
@@ -85,10 +86,11 @@ public class MainActivity extends AppCompatActivity{
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.container,new MainPageFragment()).commit();
+
+
+
+
     }
-
-
-
 
 
 

@@ -28,8 +28,8 @@
     <!--LoginActivity & RegisterActivity strings definition ends here-->
 
     <!-- TODO: Remove or change this placeholder text -->
-	
-	<string name="facebook_app_id">198516220715713</string>
-	<string name="fb_login_protocol_scheme">fb198516220715713</string>
+
+    <string name="facebook_app_id">198516220715713</string>
+    <string name="fb_login_protocol_scheme">fb198516220715713</string>
 
 </resources>
