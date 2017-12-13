@@ -1,0 +1,195 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/hatter"
+        app:layout_constraintEnd_toEndOf="@+id/hour2"
+        app:layout_constraintStart_toEndOf="@+id/hour2">
+
+        <TextView
+            android:id="@+id/all_busz_detalied"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Összes busz"
+            android:textColor="#FFFFFF"
+            tools:layout_editor_absoluteX="182dp"
+            tools:layout_editor_absoluteY="90dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4"
+            android:layout_marginTop="35dp"/>
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/logo_buszokhoz"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="121dp"
+            android:layout_marginTop="139dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/all_busz_detalied"
+            app:layout_constraintGuide_begin="139dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+
+            android:id="@+id/bus_number"
+            android:layout_width="50dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/all_busz_detalied" />
+
+        <TextView
+            android:id="@+id/stations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text=""
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bus_number"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"/>
+
+        <TableLayout
+            android:id="@+id/hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sapi">
+
+        </TableLayout>
+
+        <TableLayout
+            android:id="@+id/hour2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/aleacarp">
+
+        </TableLayout>
+
+        <TableLayout
+            android:id="@+id/hour3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="70dp"
+            app:layout_constraintBottom_toTopOf="@+id/hour4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hour2"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints">
+
+
+        </TableLayout>
+
+        <TableLayout
+            android:id="@+id/hour4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/neluc"
+            app:layout_constraintVertical_bias="1.0"
+            tools:layout_editor_absoluteX="82dp">
+
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/program"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginLeft="68dp"
+            android:layout_marginRight="68dp"
+            android:text="Program de circulatie in zilele lucratoare"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stations" />
+
+        <TextView
+            android:id="@+id/sapi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="Plecari din: Sapientia"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.262"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="68dp"
+            android:layout_marginRight="68dp"
+            app:layout_constraintTop_toBottomOf="@+id/program" />
+
+        <TextView
+            android:id="@+id/aleacarp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:textColor="#FFFFFF"
+            android:text="Plecarii din: Aleea Carpati"
+            app:layout_constraintTop_toBottomOf="@+id/hour"
+
+            tools:layout_editor_absoluteX="50dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/neluc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Program de circulatie in zilele nelucratoare"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@+id/hour2"
+            tools:layout_editor_absoluteX="50dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/alea2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Plecarii din: Aleea Carpati"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@+id/neluc"
+            tools:layout_editor_absoluteX="50dp"
+            tools:ignore="MissingConstraints" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>
